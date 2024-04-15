@@ -1,8 +1,23 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
 body{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+#content{
+    flex: 1 auto;
+}
+
+#outerContainer{
+    border-radius: 30px;
+    background-color: red;
+    padding: 30px;
+    
 }
 
 #container{
@@ -12,4 +27,5 @@ body{
     align-items: center;
     height: 800px;
     width: 800px;
+    background-color: white;
 }

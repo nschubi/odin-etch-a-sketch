@@ -16,8 +16,14 @@ body{
 #outerContainer{
     border-radius: 30px;
     background-color: red;
-    padding: 30px;
-    
+    padding: 0px 30px;
+}
+
+#containerHeader{
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #container{
@@ -28,4 +34,10 @@ body{
     height: 800px;
     width: 800px;
     background-color: white;
+}
+
+#containerFooter{
+    min-height: 50px;
+    display: flex;
+    align-items: center;
 }

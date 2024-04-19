@@ -1,16 +1,42 @@
+const STANDARD_GRIDSIZE = 17;
+const STANDARD_COLOR = "black";
+const STANDARD_MODE = "black"
+
+let rowSize = STANDARD_GRIDSIZE;
+let isPressed = false;  
+
+const cont = document.querySelector("#container");
+const btnReset = document.querySelector("#btnReset");
+const btnSize = document.querySelector("#btnSize"); 
+
+document.body.onmousedown = () => (isPressed=true);
+document.body.onmouseup = () => {isPressed=false};
+
+btnReset.addEventListener("click", () => {createGrid(cont,rowSize)});
+
+btnSize.addEventListener('click', () => {
+    rowSize = prompt("How many Squares should one line have?");
+    createGrid(cont, rowSize);
+});
+
 function createSquareDiv(size){
     const square = document.createElement("div");
     square.style.minHeight = size + 'px';
     square.style.minWidth = size + 'px';
-    // square.style.borderColor = "black";
-    // square.style.borderStyle = "solid";
-    // square.style.cursor="default";
+    square.style.borderColor = "black";
+    square.style.borderStyle = "solid";
+    square.addEventListener("mouseover", (e) => {
+        draw(e);
+    });
+    square.addEventListener("mousedown", (e) => {
+        console.log("mousedown")
+        draw(e);
+    });
     return square;
 }
 
 function createGrid(container, rowSize){
-    // Check if the height or width of container is smaller
-    container.innerHTML = '';
+    container.innerHTML = ' ';
     let width = container.offsetWidth;
     let height = container.offsetHeight;
     let numSquares = rowSize * rowSize;
@@ -25,28 +51,11 @@ function createGrid(container, rowSize){
     }
 }
 
-const cont = document.querySelector("#container");
-let rowSize = 24;
-let mousedown = false;  
-cont.addEventListener("mousedown", (e) => {
-   mousedown = true;
-   draw(e);
-});
-cont.addEventListener("mouseup", (e) => {
-    mousedown = false;
- });
-cont.addEventListener("mouseover", (e) => {
-    draw(e);
-});
-
 function draw(e){
-    if(mousedown){
-        e.target.style.backgroundColor = "black";
+    if(e.type === 'mouseover' && !isPressed){
+        return;
     }
+    e.target.style.backgroundColor = "black";
 }
-
-const btnReset = document.querySelector("#btnReset");
-console.log(btnReset);
-btnReset.addEventListener("click", createGrid(cont, rowSize));
 
 createGrid(cont, rowSize);
